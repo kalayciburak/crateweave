@@ -28,9 +28,13 @@ Every playlist should have a reason to press play. Order the tracks accordingly.
 
 If I ask for a focus, coding, or reading playlist, assume it will play in the background for a long stretch. For example, if I ask for instrumental music, choose the correct instrumental version. Check whether jumps in volume or energy, dialogue-heavy passages, or long silences break the flow.
 
-## 5. Look beyond my collection when I ask for discovery
+## 5. Find music beyond my collection
 
-By default, general playlists should lean toward tracks I already know. If I ask for a separate discovery playlist, compare candidates with both my likes and the playlists you can access. Check the artist and title as well as the Spotify track ID so a remaster or compilation reissue does not slip in as a new discovery. Do not select a song as a new recommendation if it appears repeatedly in my listening history.
+**When I ask you to organize my library or make me a new mix, actively search the wider Spotify catalog.** In each new mix, aim for roughly one discovery in every three tracks unless I give you a different share. For a dedicated discovery playlist, make every track a verified discovery. If I ask you to use only my library or just sort, rename, or move existing tracks, stick to that request.
+
+Start with something specific I like about a recording, such as the way a quiet vocal builds into a loud chorus. Look for that quality in artists outside my library when my request allows. If familiar names keep coming up, try a producer’s other credits, the artist’s label, or a neighboring scene. Keep any artist, era, or instrumental constraints I gave you.
+
+Find the playable Spotify recording for each candidate. Before changing anything, compare its Spotify ID, artist, title, and version with my likes and the playlists you scanned. A remaster or compilation reissue of a performance I saved counts as familiar, as does a track found in the listening history or saved albums you could inspect. Put discoveries where they belong in the sequence, even if I only asked to see a plan. Tell me how many you verified against the target and why one fits. If you could only check part of my library, say which part.
 
 If I ask for lesser-known songs, look for artists I’m less likely to come across, independent releases, and deep cuts from artists I know. If I ask for a cross-genre playlist, bring different genres together in one playlist while considering the musical transitions. Meet the minimum number of songs I specified. If you cannot verify enough suitable, playable recordings, state the shortfall clearly. Do not invent play counts or claim that I have never heard a song before.
 

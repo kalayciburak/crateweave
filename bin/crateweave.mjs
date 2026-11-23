@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-import { link, lstat, mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { link, lstat, mkdir, mkdtemp, readFile, realpath, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, join, resolve } from 'node:path';
 import { homedir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 const command = process.argv.slice(2);
+const version100SkillSha256 = '38bb3c6fec5da700c59636d9f3d09056dca5c3e137d4b7608b2be0ebdf68e9d7';
 const help = `Crateweave skill installer
 
 Usage:
@@ -56,10 +58,51 @@ async function inspectTarget(target, source) {
   try {
     const content = await readRegularFile(target);
     if (content.equals(source)) return 'already installed';
-    throw new Error(`Existing skill differs: ${target}`);
+    if (createHash('sha256').update(content).digest('hex') === version100SkillSha256) return 'upgrade';
+    throw new Error(`Existing skill contains local changes: ${target}`);
   } catch (error) {
     if (isMissing(error)) return null;
     throw error;
+  }
+}
+
+async function linkIfMissing(file, target) {
+  try {
+    await link(file, target);
+    return true;
+  } catch (error) {
+    if (error?.code === 'EEXIST') return false;
+    throw error;
+  }
+}
+
+async function upgrade(target, staged, source) {
+  const backupDirectory = await mkdtemp(join(dirname(target), '.crateweave-backup-'));
+  const backup = join(backupDirectory, 'previous.md');
+  try {
+    await rename(target, backup);
+  } catch (error) {
+    await rm(backupDirectory, { recursive: true });
+    if (!isMissing(error)) throw error;
+    if (await inspectTarget(target, source) === 'already installed') return 'already installed';
+    throw new Error(`Installation changed while updating: ${target}`);
+  }
+
+  try {
+    const captured = await inspectTarget(backup, source);
+    if (!captured) throw new Error(`Previous skill disappeared: ${backup}`);
+    if (await linkIfMissing(staged, target)) {
+      return captured === 'upgrade' ? 'updated' : 'already installed';
+    }
+    if (await inspectTarget(target, source) === 'already installed') return 'already installed';
+    throw new Error(`Installation changed while updating: ${target}`);
+  } catch (error) {
+    try {
+      await linkIfMissing(backup, target);
+    } catch (restoreError) {
+      throw new Error(`${error.message}. Restore failed: ${restoreError.message}. Previous file: ${backup}`);
+    }
+    throw new Error(`${error.message}. Previous file: ${backup}`);
   }
 }
 
@@ -67,19 +110,17 @@ async function install(root, segments, source) {
   const directory = await ensureDescendants(root, segments);
   const target = join(directory, 'SKILL.md');
   const existing = await inspectTarget(target, source);
-  if (existing) return existing;
+  if (existing === 'already installed') return existing;
 
   const temporaryDirectory = await mkdtemp(join(directory, '.crateweave-'));
   const temporary = join(temporaryDirectory, 'SKILL.md');
   try {
     await writeFile(temporary, source, { flag: 'wx', mode: 0o644 });
-    await link(temporary, target);
-    return 'installed';
-  } catch (error) {
-    if (error?.code !== 'EEXIST') throw error;
-    const concurrent = await inspectTarget(target, source);
-    if (concurrent) return concurrent;
-    throw new Error(`Target changed during installation: ${target}`);
+    if (await linkIfMissing(temporary, target)) return 'installed';
+    const latest = await inspectTarget(target, source);
+    if (latest === 'already installed') return latest;
+    if (latest !== 'upgrade') throw new Error(`Target changed during installation: ${target}`);
+    return await upgrade(target, temporary, source);
   } finally {
     await rm(temporaryDirectory, { recursive: true, force: true });
   }

@@ -1,6 +1,6 @@
 {
   "name": "crateweave",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Spotify playlist curation skill for Codex and Claude, built around the way you listen.",
   "bin": {
     "crateweave": "bin/crateweave.mjs"

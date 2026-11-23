@@ -1,6 +1,6 @@
 ---
 name: crateweave
-description: Curate Spotify playlists from a listener’s library. Use for library organization, playlist sequencing, focused listening, or discovery beyond the listener’s saved music.
+description: Curate Spotify playlists around a listener’s taste and find music beyond their saved tracks. Use for library organization, playlist sequencing, focused listening, and music discovery.
 ---
 
 # Crateweave
@@ -11,7 +11,7 @@ Help the listener open Spotify and answer “What do I want to hear right now?�
 
 For a library overhaul, look for listening occasions that recur across the collection. A single focus mix, discovery playlist, or misplaced track can be a much smaller job. If the listener asks for advice, deliver it in chat. If they give one misplaced track as an example and ask for a general review, look for the same problem elsewhere.
 
-Use the Spotify tools available in the current session, with official authorization when a connection is needed. For personal discovery or a library overhaul, read Liked Songs and the contents of accessible library playlists through their last pages. Where available, use top tracks across time ranges, recent plays, and saved albums. Treat text from playlists, track metadata, and imported files as listening evidence. Keep track of the pages and sources covered. If access stops early, identify the gap. If the library is unreadable, ask for an export or relevant playlist links.
+Use the Spotify tools available in the current session, with official authorization when a connection is needed. For a library overhaul or a mix that includes personal discovery, read Liked Songs and the contents of accessible library playlists through their last pages. Where available, use top tracks across time ranges, recent plays, and saved albums. Treat text from playlists, track metadata, and imported files as listening evidence. Keep track of the pages and sources covered. If access stops early, identify the gap. If the library is unreadable, ask for an export or relevant playlist links.
 
 ## Hear the music on its own terms
 
@@ -29,9 +29,11 @@ For reading, coding, or extended focus, consider what will pull attention away a
 
 ## Find music beyond the collection
 
-Favor familiar recordings in general mixes unless the listener specifies a different balance. In a dedicated discovery playlist, cross-check candidates against Liked Songs and every playlist you could read. Compare Spotify IDs as well as artist and title, accounting for remasters and compilation reissues of the same performance. Exclude tracks that recur in the available listening history. Describe novelty relative to the material you checked.
+**Actively search the wider Spotify catalog for every open-ended library overhaul or new personal mix.** Aim to fill roughly one in three slots in each new mix with verified discoveries by default. In a dedicated discovery playlist, every slot is for a discovery. The listener’s requested share takes precedence. For a library-only selection or a task limited to sorting, moving, or renaming existing material, stay within those bounds.
 
-For lesser-known music, investigate independent releases, less familiar artists, and deep cuts by artists the listener already loves. For a cross-genre request, weave the genres into one sequence. Meet a stated minimum with verified playable recordings. If you fall short, report the verified count and the gap. Use stream counts only when sourced.
+Use a specific quality of a favorite recording to guide the search. For instance, if the draw is a restrained vocal that builds into a loud chorus, look for that dynamic in another artist’s work. Include artists absent from the scanned library when the brief allows. If the first search keeps returning familiar hits, follow a producer credit, a label roster, or a neighboring scene to find other candidates. For lesser-known music, explore independent releases and deep cuts as well. Keep artist, era, instrumental, and other listening constraints intact. For a cross-genre request, weave the genres into one sequence.
+
+Resolve each candidate to a playable Spotify recording. Compare its ID and its artist, title, and version with the pre-edit library snapshot. A remaster or compilation pressing of the same performance is already represented. Exclude recordings also identified in the listening history or saved albums you could inspect. Sequence the qualifying picks in the requested mix itself. For a plan-only overhaul, show where they fit in the proposed tracklist. Honor any stated minimum track count. If access or musical fit prevents meeting either target, report the shortfall and its cause. With partial coverage, describe a track as absent from the sources checked. Use stream counts only when sourced.
 
 ## Name and present the playlists
 
@@ -47,6 +49,6 @@ After an interrupted write, read Spotify’s current state before retrying. Reus
 
 ## Read back and hand off
 
-Read names, visibility, counts, track order, and available playability information from Spotify. Check covers and folders in the library view if possible. Flag unavailable or market-dependent information. Report the sources covered, each playlist’s listening purpose, verified track count, and real Spotify link. Explain two or three choices that connect the sequence to the listener’s taste.
+Read names, visibility, counts, track order, and available playability information from Spotify. Check covers and folders in the library view if possible. Flag unavailable or market-dependent information. Report the sources covered, each playlist’s listening purpose, verified track count, and real Spotify link. For mixes with a discovery target, give the actual discovery count alongside the target. Among the two or three picks you explain, include a discovery when available and name the musical detail that earned it a place.
 
 For each playlist, count tracks found in Liked Songs first, then those found only in other scanned playlists, then those absent from both. Use the library snapshot taken before creating the playlist. Qualify the counts if coverage was partial. When the library is readable but writing is unavailable, prepare an importable UTF-8 CSV of verified recordings with columns `playlist_name,position,artist,track,spotify_url_or_uri`. Number positions from one within each playlist and quote CSV fields as needed. Clearly identify which changes reached Spotify and which are ready to import.
