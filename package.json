@@ -1,0 +1,34 @@
+{
+  "name": "crateweave",
+  "version": "1.0.0",
+  "description": "A Spotify playlist curation skill for Codex and Claude, built around the way you listen.",
+  "bin": {
+    "crateweave": "bin/crateweave.mjs"
+  },
+  "files": [
+    "bin/crateweave.mjs",
+    "prompts/playlist-arranger.en.md",
+    "skills/crateweave/SKILL.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "spotify",
+    "playlist",
+    "music-discovery",
+    "agent-skills",
+    "codex",
+    "claude-code"
+  ],
+  "author": "kalayciburak",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalayciburak/crateweave.git"
+  },
+  "homepage": "https://github.com/kalayciburak/crateweave#readme",
+  "bugs": {
+    "url": "https://github.com/kalayciburak/crateweave/issues"
+  }
+}
